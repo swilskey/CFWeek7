@@ -11,11 +11,18 @@
 #import "MyProfileViewController.h"
 #import "MyQuestionsViewController.h"
 
+CGFloat const kburgerOpenScreenDivider = 3.0;
+CGFloat const kburgerOpenScreenMultiplier = 2.0;
+NSTimeInterval const ktimeToSlideMenuOpen = 0.3;
+CGFloat const kburgerButtonWidth = 50.0;
+CGFloat const kburgerButtonHeight = 50.0;
+
 @interface BugerMenuViewController () <UITableViewDelegate>
 
 @property (strong,nonatomic) UIViewController *topViewController;
 @property (strong,nonatomic) NSArray *viewControllers;
 @property (strong,nonatomic) UIPanGestureRecognizer *panRecognizer;
+@property (strong,nonatomic) UIButton *burgerButton;
 
 @end
 
@@ -23,6 +30,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
   
   MyProfileViewController *myProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyProfile"];
   QuestionSearchViewController *questionSearchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"QuestionSearch"];
@@ -44,8 +52,18 @@
   [questionSearchVC didMoveToParentViewController:self];
   self.topViewController = questionSearchVC;
   
+  UIButton *burgerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kburgerButtonWidth, kburgerButtonHeight)];
+  [burgerButton setImage:[UIImage imageNamed:@"burger"] forState:UIControlStateNormal];
+  [self.topViewController.view addSubview:burgerButton];
+  [burgerButton addTarget:self action:@selector(burgerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+  self.burgerButton = burgerButton;
+  
   self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(topViewControllerPanned:)];
   [self.topViewController.view addGestureRecognizer:self.panRecognizer];
+  
+}
+
+- (void)viewWillAppear:(BOOL)animated {
   
 }
 
@@ -53,7 +71,77 @@
   [super didReceiveMemoryWarning];
 }
 
+- (void)burgerButtonPressed:(UIButton *)sender {
+  [UIView animateWithDuration:ktimeToSlideMenuOpen animations:^{
+    self.topViewController.view.center = CGPointMake(self.view.center.x * kburgerOpenScreenMultiplier, self.topViewController.view.center.y);
+  } completion:^(BOOL finished) {
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToCloseMenu:)];
+    [self.topViewController.view addGestureRecognizer:tap];
+    sender.userInteractionEnabled = false;
+    
+  }];
+}
+
 - (void)topViewControllerPanned:(UIPanGestureRecognizer *)sender {
+  CGPoint velocity = [sender velocityInView:self.topViewController.view];
+  CGPoint translation = [sender translationInView:self.topViewController.view];
+  
+  if (sender.state == UIGestureRecognizerStateChanged) {
+    if (velocity.x >= 0) {
+      self.topViewController.view.center = CGPointMake(self.topViewController.view.center.x + translation.x, self.topViewController.view.center.y);
+      [sender setTranslation:CGPointZero inView:self.topViewController.view];
+    }
+  }
+  
+  if (sender.state == UIGestureRecognizerStateEnded) {
+    if (self.topViewController.view.frame.origin.x > self.topViewController.view.frame.size.width / kburgerOpenScreenDivider) {
+      
+      [UIView animateWithDuration:ktimeToSlideMenuOpen animations:^{
+        self.topViewController.view.center = CGPointMake(self.view.center.x * kburgerOpenScreenMultiplier, self.topViewController.view.center.y);
+      } completion:^(BOOL finished) {
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToCloseMenu:)];
+        [self.topViewController.view addGestureRecognizer:tap];
+        self.burgerButton.userInteractionEnabled = false;
+        
+      }];
+    } else {
+      [UIView animateWithDuration:ktimeToSlideMenuOpen animations:^{
+        self.topViewController.view.center = CGPointMake(self.view.center.x, self.topViewController.view.center.y);
+      } completion:^(BOOL finished) {
+        
+      }];
+    }
+  }
+  
+}
+
+- (void)tapToCloseMenu:(UITapGestureRecognizer *)sender {
+  [self.topViewController.view removeGestureRecognizer:sender];
+  [UIView animateWithDuration:0.3 animations:^{
+    self.topViewController.view.center = self.view.center;
+  } completion:^(BOOL finished) {
+    self.burgerButton.userInteractionEnabled = true;
+    
+  }];
+}
+
+- (void)changeTopViewController:(UIViewController *)newTopVC {
+  [UIView animateWithDuration:0.3 animations:^{
+    self.topViewController.view.frame = CGRectMake(self.view.frame.size.width, self.topViewController.view.frame.origin.y, self.topViewController.view.frame.size.width, self.topViewController.view.frame.size.height);
+  } completion:^(BOOL finished) {
+    
+  }];
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  UIViewController *newVC = self.viewControllers[indexPath.row];
+  if (![newVC isEqual:self.topViewController]) {
+    [self changeTopViewController:newVC];
+  }
   
 }
 
