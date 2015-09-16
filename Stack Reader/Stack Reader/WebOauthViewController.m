@@ -28,8 +28,8 @@
   NSString *clientID = @"5565";
   NSString *redirectURI = @"https://stackexchange.com/oauth/login_success";
   NSString *finalURL = [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@",baseURL,clientID,redirectURI];
-  NSString *google = @"https://google.com";
-  [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:google]]];
+//  NSString *google = @"https://google.com";
+  [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:finalURL]]];
   
 }
 

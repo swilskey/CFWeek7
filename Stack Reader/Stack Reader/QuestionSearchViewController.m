@@ -13,8 +13,8 @@
 #import "Question.h"
 
 @interface QuestionSearchViewController () <UISearchBarDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *questionTableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak,nonatomic) IBOutlet UITableView *questionTableView;
+@property (weak,nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong,nonatomic) NSArray *questions;
 
 @end
@@ -40,7 +40,7 @@
   [searchBar resignFirstResponder];
   [StackOverflowService questionsForSearchTerm:searchBar.text completionHandler:^(NSArray *questions, NSError *error) {
     if (error) {
-      NSLog(@"Error Occured");
+      NSLog(@"Error: %@", error.localizedDescription);
     } else {
       NSLog(@"Search Complete");
       self.questions = questions;

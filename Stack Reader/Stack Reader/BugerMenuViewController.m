@@ -36,11 +36,6 @@ CGFloat const kburgerButtonHeight = 50.0;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-//  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(safariLogin:) name:@"SafariLogin" object:nil];
-  //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  //self.token = [defaults objectForKey:@"token"];
-  self.token = clientKey;
-  
   MyProfileViewController *myProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyProfile"];
   QuestionSearchViewController *questionSearchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"QuestionSearch"];
   MyQuestionsViewController *myQuestionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyQuestions"];
@@ -73,6 +68,8 @@ CGFloat const kburgerButtonHeight = 50.0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  self.token = [defaults objectForKey:@"token"];
   if (!self.token) {
     // OLD WKWebView
     WebOauthViewController *webVC = [[WebOauthViewController alloc] init];
