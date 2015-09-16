@@ -20,6 +20,14 @@
 		22107F5D1BA87FAD00E2A44A /* MyQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22107F5C1BA87FAD00E2A44A /* MyQuestionsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		22107F601BA87FB900E2A44A /* QuestionSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22107F5F1BA87FB900E2A44A /* QuestionSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		22107F631BA87FE700E2A44A /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22107F621BA87FE700E2A44A /* MyProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		22F866ED1BA8BDF80004F8BD /* StackOverflowService.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866EC1BA8BDF80004F8BD /* StackOverflowService.m */; settings = {ASSET_TAGS = (); }; };
+		22F866F01BA91D3F0004F8BD /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866EF1BA91D3F0004F8BD /* Errors.m */; settings = {ASSET_TAGS = (); }; };
+		22F866F31BA924020004F8BD /* QuestionJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866F21BA924020004F8BD /* QuestionJSONParser.m */; settings = {ASSET_TAGS = (); }; };
+		22F866F61BA924AE0004F8BD /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866F51BA924AE0004F8BD /* Question.m */; settings = {ASSET_TAGS = (); }; };
+		22F866F91BA9D9570004F8BD /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866F81BA9D9570004F8BD /* Keys.m */; settings = {ASSET_TAGS = (); }; };
+		22F866FB1BA9E2740004F8BD /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22F866FA1BA9E2740004F8BD /* QuestionCell.xib */; settings = {ASSET_TAGS = (); }; };
+		22F866FE1BA9E2A00004F8BD /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866FD1BA9E2A00004F8BD /* QuestionCell.m */; settings = {ASSET_TAGS = (); }; };
+		22F867011BA9E61D0004F8BD /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F867001BA9E61D0004F8BD /* ImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +72,21 @@
 		22107F5F1BA87FB900E2A44A /* QuestionSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSearchViewController.m; sourceTree = "<group>"; };
 		22107F611BA87FE700E2A44A /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		22107F621BA87FE700E2A44A /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		22F866EB1BA8BDF80004F8BD /* StackOverflowService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackOverflowService.h; sourceTree = "<group>"; };
+		22F866EC1BA8BDF80004F8BD /* StackOverflowService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackOverflowService.m; sourceTree = "<group>"; };
+		22F866EE1BA91D3F0004F8BD /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
+		22F866EF1BA91D3F0004F8BD /* Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Errors.m; sourceTree = "<group>"; };
+		22F866F11BA924020004F8BD /* QuestionJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionJSONParser.h; sourceTree = "<group>"; };
+		22F866F21BA924020004F8BD /* QuestionJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionJSONParser.m; sourceTree = "<group>"; };
+		22F866F41BA924AE0004F8BD /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		22F866F51BA924AE0004F8BD /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		22F866F71BA9D9570004F8BD /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
+		22F866F81BA9D9570004F8BD /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keys.m; sourceTree = "<group>"; };
+		22F866FA1BA9E2740004F8BD /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
+		22F866FC1BA9E2A00004F8BD /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
+		22F866FD1BA9E2A00004F8BD /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
+		22F866FF1BA9E61D0004F8BD /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		22F867001BA9E61D0004F8BD /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		72A01EE68C6280689EF7704E /* libPods-Stack Reader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stack Reader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1055D76D54701E4A55774AC /* Pods-Stack Reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stack Reader.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stack Reader/Pods-Stack Reader.release.xcconfig"; sourceTree = "<group>"; };
 		C77D229D1E401FD691666063 /* Pods-Stack Reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stack Reader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stack Reader/Pods-Stack Reader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +148,7 @@
 				22107F541BA730CE00E2A44A /* Models */,
 				22107F531BA730C600E2A44A /* Views */,
 				22107F521BA730BB00E2A44A /* Controllers */,
+				22F866EA1BA8BDC90004F8BD /* Services */,
 				22107F1F1BA72FA800E2A44A /* Supporting Files */,
 			);
 			path = "Stack Reader";
@@ -136,6 +160,8 @@
 				22107F301BA72FA800E2A44A /* Info.plist */,
 				22107F2B1BA72FA800E2A44A /* Assets.xcassets */,
 				22107F201BA72FA800E2A44A /* main.m */,
+				22F866F71BA9D9570004F8BD /* Keys.h */,
+				22F866F81BA9D9570004F8BD /* Keys.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,6 +206,9 @@
 			children = (
 				22107F2D1BA72FA800E2A44A /* LaunchScreen.storyboard */,
 				22107F281BA72FA800E2A44A /* Main.storyboard */,
+				22F866FA1BA9E2740004F8BD /* QuestionCell.xib */,
+				22F866FC1BA9E2A00004F8BD /* QuestionCell.h */,
+				22F866FD1BA9E2A00004F8BD /* QuestionCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -187,8 +216,25 @@
 		22107F541BA730CE00E2A44A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				22F866F41BA924AE0004F8BD /* Question.h */,
+				22F866F51BA924AE0004F8BD /* Question.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		22F866EA1BA8BDC90004F8BD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				22F866EB1BA8BDF80004F8BD /* StackOverflowService.h */,
+				22F866EC1BA8BDF80004F8BD /* StackOverflowService.m */,
+				22F866EE1BA91D3F0004F8BD /* Errors.h */,
+				22F866EF1BA91D3F0004F8BD /* Errors.m */,
+				22F866F11BA924020004F8BD /* QuestionJSONParser.h */,
+				22F866F21BA924020004F8BD /* QuestionJSONParser.m */,
+				22F866FF1BA9E61D0004F8BD /* ImageDownloader.h */,
+				22F867001BA9E61D0004F8BD /* ImageDownloader.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		5FFEBBE0AAA3A52FD5CE7301 /* Frameworks */ = {
@@ -314,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22107F2F1BA72FA800E2A44A /* LaunchScreen.storyboard in Resources */,
+				22F866FB1BA9E2740004F8BD /* QuestionCell.xib in Resources */,
 				22107F2C1BA72FA800E2A44A /* Assets.xcassets in Resources */,
 				22107F2A1BA72FA800E2A44A /* Main.storyboard in Resources */,
 			);
@@ -374,11 +421,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				22107F601BA87FB900E2A44A /* QuestionSearchViewController.m in Sources */,
+				22F866F91BA9D9570004F8BD /* Keys.m in Sources */,
 				22107F241BA72FA800E2A44A /* AppDelegate.m in Sources */,
 				22107F5A1BA87A2B00E2A44A /* WebOauthViewController.m in Sources */,
+				22F866FE1BA9E2A00004F8BD /* QuestionCell.m in Sources */,
 				22107F211BA72FA800E2A44A /* main.m in Sources */,
+				22F866F31BA924020004F8BD /* QuestionJSONParser.m in Sources */,
+				22F866F01BA91D3F0004F8BD /* Errors.m in Sources */,
+				22F866ED1BA8BDF80004F8BD /* StackOverflowService.m in Sources */,
 				22107F631BA87FE700E2A44A /* MyProfileViewController.m in Sources */,
+				22F866F61BA924AE0004F8BD /* Question.m in Sources */,
 				22107F571BA766D000E2A44A /* BugerMenuViewController.m in Sources */,
+				22F867011BA9E61D0004F8BD /* ImageDownloader.m in Sources */,
 				22107F5D1BA87FAD00E2A44A /* MyQuestionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

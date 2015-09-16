@@ -19,6 +19,7 @@
   [super viewDidLoad];
   
   WKWebView *webView = [[WKWebView alloc] init];
+  webView.frame = self.view.frame;
   [self.view addSubview:webView];
   
   webView.navigationDelegate = self;
@@ -27,7 +28,8 @@
   NSString *clientID = @"5565";
   NSString *redirectURI = @"https://stackexchange.com/oauth/login_success";
   NSString *finalURL = [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@",baseURL,clientID,redirectURI];
-  [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:finalURL]]];
+  NSString *google = @"https://google.com";
+  [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:google]]];
   
 }
 
@@ -42,7 +44,10 @@
     NSArray *components = [fragmentString componentsSeparatedByString:@"&"];
     NSString *fullTokenParameter = components.firstObject;
     NSString *token = [fullTokenParameter componentsSeparatedByString:@"="].lastObject;
-    NSLog(@"%@",token);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:token forKey:@"token"];
+    [defaults synchronize];
+    [self dismissViewControllerAnimated:true completion:nil];
   }
   decisionHandler(WKNavigationActionPolicyAllow);
 }

@@ -7,9 +7,13 @@
 //
 
 #import "BugerMenuViewController.h"
+#import "WebOauthViewController.h"
 #import "QuestionSearchViewController.h"
 #import "MyProfileViewController.h"
 #import "MyQuestionsViewController.h"
+#import "Keys.h"
+
+#import <SafariServices/SafariServices.h>
 
 CGFloat const kburgerOpenScreenDivider = 3.0;
 CGFloat const kburgerOpenScreenMultiplier = 2.0;
@@ -17,12 +21,13 @@ NSTimeInterval const ktimeToSlideMenuOpen = 0.3;
 CGFloat const kburgerButtonWidth = 50.0;
 CGFloat const kburgerButtonHeight = 50.0;
 
-@interface BugerMenuViewController () <UITableViewDelegate>
+@interface BugerMenuViewController () <UITableViewDelegate,SFSafariViewControllerDelegate>
 
 @property (strong,nonatomic) UIViewController *topViewController;
 @property (strong,nonatomic) NSArray *viewControllers;
 @property (strong,nonatomic) UIPanGestureRecognizer *panRecognizer;
 @property (strong,nonatomic) UIButton *burgerButton;
+@property (strong,nonatomic) NSString *token;
 
 @end
 
@@ -31,6 +36,10 @@ CGFloat const kburgerButtonHeight = 50.0;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+//  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(safariLogin:) name:@"SafariLogin" object:nil];
+  //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  //self.token = [defaults objectForKey:@"token"];
+  self.token = clientKey;
   
   MyProfileViewController *myProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyProfile"];
   QuestionSearchViewController *questionSearchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"QuestionSearch"];
@@ -63,8 +72,21 @@ CGFloat const kburgerButtonHeight = 50.0;
   
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-  
+- (void)viewDidAppear:(BOOL)animated {
+  if (!self.token) {
+    // OLD WKWebView
+    WebOauthViewController *webVC = [[WebOauthViewController alloc] init];
+    [self presentViewController:webVC animated:true completion:nil];
+    
+    //NEW SF ViewController
+//    NSString *baseURL = @"https://stackexchange.com/oauth";
+//    NSString *clientID = @"5565";
+//    NSString *redirectURI = @"https://stackexchange.com/oauth/login_success";
+//    NSString *finalURL = [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@",baseURL,clientID,redirectURI];
+//    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:finalURL]];
+//    safariVC.delegate = self;
+//    [self presentViewController:safariVC animated:true completion:nil];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,7 +153,28 @@ CGFloat const kburgerButtonHeight = 50.0;
   [UIView animateWithDuration:0.3 animations:^{
     self.topViewController.view.frame = CGRectMake(self.view.frame.size.width, self.topViewController.view.frame.origin.y, self.topViewController.view.frame.size.width, self.topViewController.view.frame.size.height);
   } completion:^(BOOL finished) {
+    CGRect oldFrame = self.topViewController.view.frame;
+    [self.topViewController willMoveToParentViewController:nil];
+    [self.topViewController.view removeFromSuperview];
+    [self.topViewController removeFromParentViewController];
     
+    [self addChildViewController:newTopVC];
+    newTopVC.view.frame = oldFrame;
+    [self.view addSubview:newTopVC.view];
+    [newTopVC didMoveToParentViewController:self];
+    self.topViewController = newTopVC;
+    
+    [self.burgerButton removeFromSuperview];
+    [self.topViewController.view addSubview:self.burgerButton];
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+      self.topViewController.view.center = self.view.center;
+    } completion:^(BOOL finished) {
+      [self.topViewController.view addGestureRecognizer:self.panRecognizer];
+      self.burgerButton.userInteractionEnabled = true;
+    }];
+
   }];
 }
 
@@ -143,6 +186,11 @@ CGFloat const kburgerButtonHeight = 50.0;
     [self changeTopViewController:newVC];
   }
   
+}
+
+#pragma mark - SafariVCDelegate
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+  [controller dismissViewControllerAnimated:true completion:nil];
 }
 
 @end
