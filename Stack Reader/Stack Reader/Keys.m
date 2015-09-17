@@ -8,4 +8,4 @@
 
 #import "Keys.h"
 
-NSString *const clientKey = @"DMHMIz2ECeAkpy9lZ0Bm*Q((";
+NSString *const clientKey = @"doK*k5Cuc1yVTaVkLEPpng((";

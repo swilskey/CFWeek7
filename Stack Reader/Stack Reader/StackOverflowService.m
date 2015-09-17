@@ -9,16 +9,19 @@
 #import "StackOverflowService.h"
 #import "Errors.h"
 #import "QuestionJSONParser.h"
+#import "UserJSONParser.h"
+#import "User.h"
+#import "Keys.h"
 #import <AFNetworking/AFNetworking.h>
 
 @implementation StackOverflowService
 
 + (void)questionsForSearchTerm:(NSString *)searchTerm completionHandler:(void(^)(NSArray *, NSError *))completionHandler {
   //Examplesearch term
-  NSString *url = @"https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=swift&site=stackoverflow";
-  
+  NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+  NSString *searchURL = [NSString stringWithFormat:@"https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=%@&site=stackoverflow&key=%@&access_token=%@",searchTerm,clientKey,accessToken];
   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-  [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+  [manager GET:searchURL parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
     
     NSArray *questions = [QuestionJSONParser questionResultsFromJSON:responseObject];
     
@@ -34,6 +37,44 @@
     }
     
   }];
+}
+
++ (void)questionsForUser:(void(^)(NSArray *questions, NSError *error))completionHandler {
+  NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+  NSString *url = [NSString stringWithFormat:@"https://api.stackexchange.com/2.2/me/questions?order=desc&sort=activity&site=stackoverflow&key=%@&access_token=%@",clientKey,token];
+  
+  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+  [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    NSArray *questions = [QuestionJSONParser questionResultsFromJSON:responseObject];
+    completionHandler(questions, nil);
+  } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+    if (operation.response) {
+      NSError *stackOverflowError = [self errorForStatusCode:operation.response.statusCode];
+      completionHandler(nil,stackOverflowError);
+    } else {
+      NSError *reachabilityError = [self checkReachability];
+      completionHandler(nil,reachabilityError);
+    }
+  }];
+}
+
++ (void)userAccountForAuthenticatedUser:(void(^)(User *data, NSError *error))completionHandler {
+  NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+  NSString *userURL = [NSString stringWithFormat:@"https://api.stackexchange.com/2.2/me?order=desc&sort=reputation&site=stackoverflow&key=%@&access_token=%@",clientKey,token];
+  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+  [manager GET:userURL parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    User *user = [UserJSONParser parseUserJSON:responseObject];
+    completionHandler(user, nil);
+  } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+    if (operation.response) {
+      NSError *stackOverflowError = [self errorForStatusCode:operation.response.statusCode];
+      completionHandler(nil,stackOverflowError);
+    } else {
+      NSError *reachabilityError = [self checkReachability];
+      completionHandler(nil,reachabilityError);
+    }
+  }];
+
 }
 
 + (NSError *)errorForStatusCode:(NSInteger)statusCode {

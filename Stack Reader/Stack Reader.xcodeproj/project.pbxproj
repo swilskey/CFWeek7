@@ -20,6 +20,8 @@
 		22107F5D1BA87FAD00E2A44A /* MyQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22107F5C1BA87FAD00E2A44A /* MyQuestionsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		22107F601BA87FB900E2A44A /* QuestionSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22107F5F1BA87FB900E2A44A /* QuestionSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		22107F631BA87FE700E2A44A /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22107F621BA87FE700E2A44A /* MyProfileViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		223EDF9D1BAB270F009844B7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 223EDF9C1BAB270F009844B7 /* User.m */; settings = {ASSET_TAGS = (); }; };
+		223EDFA01BAB2769009844B7 /* UserJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 223EDF9F1BAB2769009844B7 /* UserJSONParser.m */; settings = {ASSET_TAGS = (); }; };
 		22F866ED1BA8BDF80004F8BD /* StackOverflowService.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866EC1BA8BDF80004F8BD /* StackOverflowService.m */; settings = {ASSET_TAGS = (); }; };
 		22F866F01BA91D3F0004F8BD /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866EF1BA91D3F0004F8BD /* Errors.m */; settings = {ASSET_TAGS = (); }; };
 		22F866F31BA924020004F8BD /* QuestionJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F866F21BA924020004F8BD /* QuestionJSONParser.m */; settings = {ASSET_TAGS = (); }; };
@@ -72,6 +74,10 @@
 		22107F5F1BA87FB900E2A44A /* QuestionSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSearchViewController.m; sourceTree = "<group>"; };
 		22107F611BA87FE700E2A44A /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		22107F621BA87FE700E2A44A /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		223EDF9B1BAB270F009844B7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		223EDF9C1BAB270F009844B7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		223EDF9E1BAB2769009844B7 /* UserJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserJSONParser.h; sourceTree = "<group>"; };
+		223EDF9F1BAB2769009844B7 /* UserJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserJSONParser.m; sourceTree = "<group>"; };
 		22F866EB1BA8BDF80004F8BD /* StackOverflowService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackOverflowService.h; sourceTree = "<group>"; };
 		22F866EC1BA8BDF80004F8BD /* StackOverflowService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackOverflowService.m; sourceTree = "<group>"; };
 		22F866EE1BA91D3F0004F8BD /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 			children = (
 				22F866F41BA924AE0004F8BD /* Question.h */,
 				22F866F51BA924AE0004F8BD /* Question.m */,
+				223EDF9B1BAB270F009844B7 /* User.h */,
+				223EDF9C1BAB270F009844B7 /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -233,6 +241,8 @@
 				22F866F21BA924020004F8BD /* QuestionJSONParser.m */,
 				22F866FF1BA9E61D0004F8BD /* ImageDownloader.h */,
 				22F867001BA9E61D0004F8BD /* ImageDownloader.m */,
+				223EDF9E1BAB2769009844B7 /* UserJSONParser.h */,
+				223EDF9F1BAB2769009844B7 /* UserJSONParser.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -421,10 +431,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				22107F601BA87FB900E2A44A /* QuestionSearchViewController.m in Sources */,
+				223EDFA01BAB2769009844B7 /* UserJSONParser.m in Sources */,
 				22F866F91BA9D9570004F8BD /* Keys.m in Sources */,
 				22107F241BA72FA800E2A44A /* AppDelegate.m in Sources */,
 				22107F5A1BA87A2B00E2A44A /* WebOauthViewController.m in Sources */,
 				22F866FE1BA9E2A00004F8BD /* QuestionCell.m in Sources */,
+				223EDF9D1BAB270F009844B7 /* User.m in Sources */,
 				22107F211BA72FA800E2A44A /* main.m in Sources */,
 				22F866F31BA924020004F8BD /* QuestionJSONParser.m in Sources */,
 				22F866F01BA91D3F0004F8BD /* Errors.m in Sources */,

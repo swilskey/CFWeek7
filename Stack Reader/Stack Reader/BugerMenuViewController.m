@@ -71,18 +71,8 @@ CGFloat const kburgerButtonHeight = 50.0;
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   self.token = [defaults objectForKey:@"token"];
   if (!self.token) {
-    // OLD WKWebView
     WebOauthViewController *webVC = [[WebOauthViewController alloc] init];
     [self presentViewController:webVC animated:true completion:nil];
-    
-    //NEW SF ViewController
-//    NSString *baseURL = @"https://stackexchange.com/oauth";
-//    NSString *clientID = @"5565";
-//    NSString *redirectURI = @"https://stackexchange.com/oauth/login_success";
-//    NSString *finalURL = [NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@",baseURL,clientID,redirectURI];
-//    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:finalURL]];
-//    safariVC.delegate = self;
-//    [self presentViewController:safariVC animated:true completion:nil];
   }
 }
 

@@ -7,16 +7,30 @@
 //
 
 #import "MyQuestionsViewController.h"
+#import "QuestionCell.h"
+#import "Question.h"
+#import "StackOverflowService.h"
 
-@interface MyQuestionsViewController ()
-
+@interface MyQuestionsViewController () <UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *myQuestionsTableView;
+@property (strong,nonatomic) NSArray *questions;
 @end
 
 @implementation MyQuestionsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view.
+  self.myQuestionsTableView.dataSource = self;
+  [self.myQuestionsTableView registerNib:[UINib nibWithNibName:@"QuestionCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"QuestionCell"];
+  
+  [StackOverflowService questionsForUser:^(NSArray *questions, NSError *error) {
+    if (error) {
+      NSLog(@"Error: %@", error.localizedDescription);
+    } else {
+      self.questions = questions;
+      [self.myQuestionsTableView reloadData];
+    }
+  }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +38,17 @@
   // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - UITableViewDataSource
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return self.questions.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionCell" forIndexPath:indexPath];
+  Question *question = [self.questions objectAtIndex:indexPath.row];
+  
+  cell.questionLabel.text = question.title;
+  return cell;
+}
 @end
