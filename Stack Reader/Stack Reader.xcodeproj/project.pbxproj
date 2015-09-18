@@ -155,6 +155,7 @@
 				22107F531BA730C600E2A44A /* Views */,
 				22107F521BA730BB00E2A44A /* Controllers */,
 				22F866EA1BA8BDC90004F8BD /* Services */,
+				223EDFA11BABC436009844B7 /* Code Challenges */,
 				22107F1F1BA72FA800E2A44A /* Supporting Files */,
 			);
 			path = "Stack Reader";
@@ -228,6 +229,13 @@
 				223EDF9C1BAB270F009844B7 /* User.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		223EDFA11BABC436009844B7 /* Code Challenges */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Code Challenges";
 			sourceTree = "<group>";
 		};
 		22F866EA1BA8BDC90004F8BD /* Services */ = {
